@@ -49,15 +49,17 @@
             opacity: 1; /* Mantém o texto sempre visível */
             background-color: #e65c00; /* Cor de fundo ao passar o mouse */
             transform: translateY(-2px); /* Efeito de elevação */
+
+        
         }
 
-       
+        
 
         .slider {
             position: relative;
             max-width: 100%;
             overflow: hidden;
-            height: 70vh; /* Altura 100% da tela */
+            height: 65vh; /* Altura 100% da tela */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -106,42 +108,50 @@
             box-sizing: border-box; /* Inclui padding na largura total */
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0; /* Remove margem padrão */
+        section {
+            padding: 20px;
         }
 
-        li {
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte */
+            justify-content: center; /* Centraliza os itens */
+            gap: 20px; /* Espaçamento entre os boxes */
+        }
+
+        .menu-container img{
+            max-width: 250px;
+        }
+
+
+
+
+
+        .menu-item {
             background: white;
-            margin: 10px 0; /* Margem em cima e embaixo */
-            padding: 15px;
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(30% - 20px);
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center; /* Centraliza os itens dentro da coluna */
+            padding: 15px;
+            min-width: 200px;
+        }
+
+        .item-details {
+            flex: 1;
+            text-align: center; /* Centraliza o texto da descrição */
+            margin-bottom: 10px;
         }
 
         .price {
             font-size: 22px;
             font-weight: bold;
             color: #ff6600;
-            margin-left: auto;
-            padding: 0 15px;
-        }
-
-        img {
-            width: 50px;
-            height: 50px;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .item-details {
-            flex: 1;
-            text-align: left;
+            margin: 0; /* Remover margens para alinhar corretamente */
+            padding: 5px 0; /* Espaçamento vertical */
+            text-align: center; /* Garante que o preço fique centralizado */
         }
 
         button {
@@ -151,8 +161,10 @@
             padding: 10px;
             cursor: pointer;
             border-radius: 5px;
-            margin-top: 10px;
+            margin-top: auto;
             width: 100%;
+            box-sizing: border-box;
+            text-align: center; /* Centraliza o texto do botão */
         }
 
         button:hover {
@@ -205,7 +217,7 @@
         /* Estilos responsivos */
         @media (max-width: 768px) {
             .slider {
-                height: 25vh; /* Ajusta a altura para metade da tela em dispositivos móveis */
+                height: 50vh; /* Ajusta a altura para metade da tela em dispositivos móveis */
             }
 
             .slider-image {
@@ -216,13 +228,40 @@
                 flex-direction: column; /* Permite que o menu empilhe os itens em telas menores */
                 width: 100%; /* Garante que o menu ocupe 100% da largura */
                 padding: 0; /* Remove o padding */
+                
             }
 
             nav a {
-                padding: 10px; /* Ajuste no padding para pegar menos espaço */
-                margin: 5px 0; /* Margem vertical entre os links */
-                width: 100%; /* Faz os links do menu ocuparem a largura total */
+                padding: 0px; /* Ajuste no padding para pegar menos espaço */
+                margin-top: 25px; /* Margem vertical entre os links */
+                width: 130%; /* Faz os links do menu ocuparem a largura total */
                 text-align: center; /* Centraliza o texto */
+            }
+
+            .menu-item {
+                flex: 1 1 calc(45% - 20px); /* Largura dos itens, 2 por linha em telas menores */
+            }
+
+            .menu-container img{
+            max-width: 80px;
+        }
+
+        .slider {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            height: 20vh; /* Altura 100% da tela */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        }
+
+        @media (max-width: 480px) {
+            .menu-item {
+                flex: 1 1 100%; /* 1 item por linha em telas muito pequenas */
             }
         }
     </style>
@@ -260,35 +299,64 @@
     <main>
         <section id="menu">
             <h2>Lanches</h2>
-            <ul>
-                <li data-name="X-Burguer" data-price="16">
-                    <img src="x-burguer.jpg" alt="X-Burguer">
+            <div class="menu-container">
+                <div class="menu-item" data-name="X-Burguer" data-price="16">
+                    <img src="img/lanche.png" alt="X-Burguer">
                     <div class="item-details">X-Burguer - Hamburguer Industrial, maionese, presunto e muçarela</div>
                     <span class="price">R$16,00</span>
                     <button onclick="addToOrder(this)">Adicionar</button>
-                </li>
-                <li data-name="X-Salada" data-price="18">
-                    <img src="x-salada.jpg" alt="X-Salada">
+                </div>
+                <div class="menu-item" data-name="X-Salada" data-price="18">
+                    <img src="img/lanche.png" alt="X-Salada">
                     <div class="item-details">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela</div>
                     <span class="price">R$18,00</span>
                     <button onclick="addToOrder(this)">Adicionar</button>
-                </li>
-            </ul>
+                </div>
+                <div class="menu-item" data-name="X-Salada" data-price="18">
+                    <img src="img/lanche.png" alt="X-Salada">
+                    <div class="item-details">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$18,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="X-Salada" data-price="18">
+                    <img src="img/lanche.png" alt="X-Salada">
+                    <div class="item-details">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$18,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="X-Salada" data-price="18">
+                    <img src="img/lanche.png" alt="X-Salada">
+                    <div class="item-details">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$18,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="X-Salada" data-price="18">
+                    <img src="img/lanche.png" alt="X-Salada">
+                    <div class="item-details">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$18,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="menu">
             <h2 id="bebidas">Bebidas</h2>
-            <ul>
-                <li data-name="Coca Cola Lata" data-price="5">
-                    <img src="coca-lata.jpg" alt="Coca Cola Lata">
+            <div class="menu-container">
+                
+                <div class="menu-item" data-name="Coca Cola Lata" data-price="5">
+                    <img src="img/coca.png" alt="Coca Cola Lata">
                     <div class="item-details">Coca Cola Lata</div>
                     <span class="price">R$5,00</span>
                     <button onclick="addToOrder(this)">Adicionar</button>
-                </li>
-                <li data-name="Fanta Lata" data-price="5">
-                    <img src="fanta-lata.jpg" alt="Fanta Lata">
+                </div>
+                <div class="menu-item" data-name="Fanta Lata" data-price="5">
+                    <img src="img/fanta.png" alt="Fanta Lata">
                     <div class="item-details">Fanta Lata</div>
                     <span class="price">R$5,00</span>
                     <button onclick="addToOrder(this)">Adicionar</button>
-                </li>
-            </ul>
+                </div>
+            </div>
         </section>
 
         <section id="order">
