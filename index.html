@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio de Lanches</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        header {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cardápio</h1>
+    </header>
+    <main>
+        <section id="menu">
+            <h2>Lanches</h2>
+            <ul>
+                <li data-name="X-Burguer" data-price="16">X-Burguer - Hamburguer Industrial, maionese, presunto e muçarela <button onclick="addToOrder(this)">Adicionar</button></li>
+                <li data-name="X-Salada" data-price="18">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela <button onclick="addToOrder(this)">Adicionar</button></li>
+            </ul>
+            <h2>Bebidas</h2>
+            <ul>
+                <li data-name="Coca Cola Lata" data-price="5">Coca Cola Lata <button onclick="addToOrder(this)">Adicionar</button></li>
+                <li data-name="Fanta Lata" data-price="5">Fanta Lata <button onclick="addToOrder(this)">Adicionar</button></li>
+            </ul>
+        </section>
+        <section id="order">
+            <h2>Seu Pedido</h2>
+            <ul id="order-list"></ul>
+            <button id="send-whatsapp" onclick="sendWhatsApp()">Enviar Pedido</button>
+        </section>
+    </main>
+    <script>
+        let order = [];
+
+        function addToOrder(button) {
+            const item = button.parentElement;
+            const name = item.getAttribute('data-name');
+            order.push(name);
+            updateOrderList();
+        }
+
+        function updateOrderList() {
+            const orderList = document.getElementById('order-list');
+            orderList.innerHTML = '';
+            order.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                orderList.appendChild(li);
+            });
+        }
+
+        function sendWhatsApp() {
+            if (order.length === 0) {
+                alert('Adicione itens ao pedido antes de enviar.');
+                return;
+            }
+            const message = encodeURIComponent('Pedido: ' + order.join(', '));
+            const phoneNumber = '5511999999999'; // Substitua pelo número correto
+            const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

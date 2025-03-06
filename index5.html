@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio de Lanches</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        header {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-left: auto;
+            padding: 0 15px;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .item-details {
+            flex: 1;
+            text-align: left;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cardápio</h1>
+    </header>
+    <main>
+        <section id="menu">
+            <h2>Lanches</h2>
+            <ul>
+                <li data-name="X-Burguer" data-price="16">
+                    <img src="x-burguer.jpg" alt="X-Burguer">
+                    <div class="item-details">X-Burguer - Hamburguer Industrial, maionese, presunto e muçarela</div>
+                    <span class="price">R$16,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="X-Salada" data-price="18">
+                    <img src="x-salada.jpg" alt="X-Salada">
+                    <div class="item-details">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$18,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="X-Salada Egg" data-price="20">
+                    <img src="x-salada-egg.jpg" alt="X-Salada Egg">
+                    <div class="item-details">X-Salada Egg - Hamburguer Industrial, ovo, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$20,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="X-Salada Bacon" data-price="22">
+                    <img src="x-salada-bacon.jpg" alt="X-Salada Bacon">
+                    <div class="item-details">X-Salada Bacon - Hamburguer Industrial, bacon, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$22,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+
+                <li data-name="X-Salada Bacon2" data-price="25">
+                    <img src="x-salada-bacon.jpg" alt="X-Salada Bacon2">
+                    <div class="item-details">X-Salada Bacon2 - Hamburguer Industrial, bacon, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$25,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+            </ul>
+            <h2>Bebidas</h2>
+            <ul>
+                <li data-name="Coca Cola Lata" data-price="5">
+                    <img src="coca-lata.jpg" alt="Coca Cola Lata">
+                    <div class="item-details">Coca Cola Lata</div>
+                    <span class="price">R$5,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="Fanta Lata" data-price="5">
+                    <img src="fanta-lata.jpg" alt="Fanta Lata">
+                    <div class="item-details">Fanta Lata</div>
+                    <span class="price">R$5,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+            </ul>
+        </section>
+        <section id="order">
+            <h2>Seu Pedido</h2>
+            <ul id="order-list"></ul>
+            <p id="total-price">Total: R$0,00</p>
+            <button id="send-whatsapp" onclick="sendWhatsApp()">Enviar Pedido</button>
+        </section>
+    </main>
+    <script>
+        let order = [];
+        let total = 0;
+
+        function addToOrder(button) {
+            const item = button.parentElement;
+            const name = item.getAttribute('data-name');
+            const price = parseFloat(item.getAttribute('data-price'));
+            order.push({ name, price });
+            total += price;
+            updateOrderList();
+        }
+
+        function updateOrderList() {
+            const orderList = document.getElementById('order-list');
+            const totalPrice = document.getElementById('total-price');
+            orderList.innerHTML = '';
+            order.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - R$${item.price.toFixed(2)}`;
+                orderList.appendChild(li);
+            });
+            totalPrice.textContent = `Total: R$${total.toFixed(2)}`;
+        }
+
+        function sendWhatsApp() {
+            if (order.length === 0) {
+                alert('Adicione itens ao pedido antes de enviar.');
+                return;
+            }
+            const message = encodeURIComponent('Pedido:\n' + order.map(item => `${item.name} - R$${item.price.toFixed(2)}`).join('\n') + `\nTotal: R$${total.toFixed(2)}`);
+            const phoneNumber = '5511999999999'; // Substitua pelo número correto
+            const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

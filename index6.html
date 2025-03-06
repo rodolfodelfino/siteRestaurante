@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio de Lanches</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        header {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+        main {
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-left: auto;
+            padding: 0 15px;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .item-details {
+            flex: 1;
+            text-align: left;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: left;
+        }
+        .form-container label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cardápio</h1>
+    </header>
+    <main>
+        <section id="menu">
+            <h2>Lanches</h2>
+            <ul>
+                <li data-name="X-Burguer" data-price="16">
+                    <img src="x-burguer.jpg" alt="X-Burguer">
+                    <div class="item-details">X-Burguer - Hamburguer Industrial, maionese, presunto e muçarela</div>
+                    <span class="price">R$16,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="X-Salada" data-price="18">
+                    <img src="x-salada.jpg" alt="X-Salada">
+                    <div class="item-details">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$18,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+            </ul>
+            <h2>Bebidas</h2>
+            <ul>
+                <li data-name="Coca Cola Lata" data-price="5">
+                    <img src="coca-lata.jpg" alt="Coca Cola Lata">
+                    <div class="item-details">Coca Cola Lata</div>
+                    <span class="price">R$5,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="Fanta Lata" data-price="5">
+                    <img src="fanta-lata.jpg" alt="Fanta Lata">
+                    <div class="item-details">Fanta Lata</div>
+                    <span class="price">R$5,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+            </ul>
+        </section>
+        <section id="order">
+            <h2>Seu Pedido</h2>
+            <ul id="order-list"></ul>
+            <p id="total-price">Total: R$0,00</p>
+            
+            <div class="form-container">
+                <h3>Dados do Cliente</h3>
+                <label>Nome: <input type="text" id="client-name"></label>
+                <label>Telefone: <input type="text" id="client-phone"></label>
+                <label>Rua: <input type="text" id="client-street"></label>
+                <label>Nº: <input type="text" id="client-number"></label>
+                <label>Bairro: <input type="text" id="client-neighborhood"></label>
+                <label>Cidade: <input type="text" id="client-city"></label>
+                <label>Estado:
+                    <select id="client-state">
+                        <option value="">Selecione</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                    </select>
+                </label>
+                <label>Ponto de Referência: <input type="text" id="client-reference"></label>
+                <label><input type="checkbox" id="pickup"> Vou retirar no local</label>
+                <button id="send-whatsapp" onclick="sendWhatsApp()">Enviar Pedido</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

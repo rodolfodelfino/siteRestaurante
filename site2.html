@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Delícias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #ff7f50;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 15px;
+        }
+
+        .slider {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .slider-image {
+            width: 100%;
+            display: none;
+        }
+
+        .slider-image.active {
+            display: block;
+        }
+
+        .nav-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-left: auto;
+            padding: 0 15px;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .item-details {
+            flex: 1;
+            text-align: left;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#comida">Comida</a></li>
+                <li><a href="#doces">Doces</a></li>
+                <li><a href="#bebidas">Bebidas</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="slider">
+            <img class="slider-image active" src="img/Banner para pedidos de lanches moderno laranja.jpg" alt="Promoção 1">
+            <img class="slider-image" src="img/Banner Promoção Pizzaria Simples Vermelho, Bege e Branco(1).jpg" alt="Promoção 2">
+            <img class="slider-image" src="img/Macarrão bolonhesa restaurante banner gastronomia verde e laranja.jpg" alt="Promoção 3">
+            <img class="slider-image" src="img/Banner para pedidos de lanches moderno laranja.jpg" alt="Promoção 4">
+            <img class="slider-image" src="img/Macarrão bolonhesa restaurante banner gastronomia verde e laranja.jpg" alt="Promoção 5">
+            <div class="nav-buttons">
+                <button onclick="changeSlide(-1)">&#10094;</button>
+                <button onclick="changeSlide(1)">&#10095;</button>
+            </div>
+        </div>
+    </section>
+    <main>
+        <section id="menu">
+            <h2>Lanches</h2>
+            <ul>
+                <li data-name="X-Burguer" data-price="16">
+                    <img src="x-burguer.jpg" alt="X-Burguer">
+                    <div class="item-details">X-Burguer - Hamburguer Industrial, maionese, presunto e muçarela</div>
+                    <span class="price">R$16,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="X-Salada" data-price="18">
+                    <img src="x-salada.jpg" alt="X-Salada">
+                    <div class="item-details">X-Salada - Hamburguer industrial, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$18,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="X-Salada Egg" data-price="20">
+                    <img src="x-salada-egg.jpg" alt="X-Salada Egg">
+                    <div class="item-details">X-Salada Egg - Hamburguer Industrial, ovo, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$20,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="X-Salada Bacon" data-price="22">
+                    <img src="x-salada-bacon.jpg" alt="X-Salada Bacon">
+                    <div class="item-details">X-Salada Bacon - Hamburguer Industrial, bacon, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$22,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+
+                <li data-name="X-Salada Bacon2" data-price="25">
+                    <img src="x-salada-bacon.jpg" alt="X-Salada Bacon2">
+                    <div class="item-details">X-Salada Bacon2 - Hamburguer Industrial, bacon, alface, tomate, maionese, presunto e muçarela</div>
+                    <span class="price">R$25,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+            </ul>
+            <h2>Bebidas</h2>
+            <ul>
+                <li data-name="Coca Cola Lata" data-price="5">
+                    <img src="coca-lata.jpg" alt="Coca Cola Lata">
+                    <div class="item-details">Coca Cola Lata</div>
+                    <span class="price">R$5,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+                <li data-name="Fanta Lata" data-price="5">
+                    <img src="fanta-lata.jpg" alt="Fanta Lata">
+                    <div class="item-details">Fanta Lata</div>
+                    <span class="price">R$5,00</span>
+                    <button onclick="addToOrder(this)">Adicionar</button>
+                </li>
+            </ul>
+        </section>
+        <section id="order">
+            <h2>Seu Pedido</h2>
+            <ul id="order-list"></ul>
+            <p id="total-price">Total: R$0,00</p>
+            <button id="send-whatsapp" onclick="sendWhatsApp()">Enviar Pedido</button>
+        </section>
+    </main>
+
+    <section id="comida">
+        <h2>Comida</h2>
+        <p>Conheça nossos pratos deliciosos!</p>
+    </section>
+
+    <section id="doces">
+        <h2>Doces</h2>
+        <p>Delícias para adoçar o seu dia!</p>
+    </section>
+
+    <section id="bebidas">
+        <h2>Bebidas</h2>
+        <p>Refresque-se com nossas bebidas!</p>
+    </section>
+
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Entre em contato: <a href="https://wa.me/5514997792544">WhatsApp</a></p>
+    </section>
+
+    <footer>
+        <p>Desenvolvido por Rodolfo Oliveira</p>
+        <p>Contato: <a href="https://wa.me/5514997792544">(14) 99779-2544</a></p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-image');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function autoChangeSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Inicia mostrando a primeira imagem
+        showSlide(currentSlide);
+
+        // Configura o slide automático a cada 5 segundos
+        setInterval(autoChangeSlide, 5000);
+    </script>
+</body>
+</html>
